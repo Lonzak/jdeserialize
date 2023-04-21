@@ -481,7 +481,9 @@ public class jdeserialize {
             hm.putAll(handles);
             handlemaps.add(hm);
         }
-        handles.clear();
+        if(handles!=null) {
+        	handles.clear();
+        }
         curhandle = ObjectStreamConstants.baseWireHandle;  // 0x7e0000
     }
     /**
@@ -837,7 +839,11 @@ public class jdeserialize {
                     break;
                 }
                 content c = read_Content(tc, dis, true);
-                System.out.println("read: " + c.toString());
+                
+                if(c!=null) {
+                	System.out.println("read: " + c.toString());
+                }
+                
                 if(c != null && c.isExceptionObject()) {
                     c = new exceptionstate(c, lis.getRecordedData());
                 }
@@ -915,7 +921,9 @@ public class jdeserialize {
         if(!go.hasOption("-nocontent")) {
             System.out.println("//// BEGIN stream content output");
             for(content c: content) {
-                System.out.println(c.toString());
+            	if(c!=null) {
+            		System.out.println(c.toString());
+            	}
             }
             System.out.println("//// END stream content output");
             System.out.println("");
